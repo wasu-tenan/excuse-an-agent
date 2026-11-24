@@ -25,6 +25,10 @@ def main(argv=None):
     )
     args = parser.parse_args(argv)
 
+    # MAKEFUN_OUTPUT_DIR names a directory; the entry file lives inside it.
+    if os.path.isdir(args.output):
+        args.output = os.path.join(args.output, "entry.txt")
+
     text = ENTRY
     if not 1 <= len(text) <= 160:
         raise SystemExit(f"entry is {len(text)} characters, must be 1-160")
